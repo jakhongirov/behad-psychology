@@ -111,6 +111,8 @@ module.exports = {
 
             const addQuestion = await model.addQuestion(title, testId, obj1, obj2, obj3, obj4, obj5, obj6)
 
+            console.log(title);
+
             if (addQuestion) {
                 return res.json({
                     status: 200,

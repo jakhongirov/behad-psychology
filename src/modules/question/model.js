@@ -146,8 +146,8 @@ const questionLimitPrevByTitle = (id, title) => fetchALL(QUESTION_LIMIT_PREV_BY_
 const questionLimitNext = (id) => fetchALL(QUESTION_LIMIT_NEXT, id)
 const questionLimitPrev = (id) => fetchALL(QUESTION_LIMIT_PREV, id)
 const questionByTestId = (testId) => fetchALL(QUESTION_BY_TEST_ID, testId)
-const addQuestion = (text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6) => fetch(ADD_QUESTION, text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
-const updateQuestion = (id, text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6) => fetch(UPDATE_QUESTION, id, text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
+const addQuestion = (title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6) => fetch(ADD_QUESTION, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
+const updateQuestion = (id, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6) => fetch(UPDATE_QUESTION, id, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
 const deleteQuestion= (id) => fetch(DELETE_QUESTION, id)
 
 module.exports = {
