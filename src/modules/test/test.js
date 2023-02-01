@@ -97,12 +97,14 @@ module.exports = {
             let obj5 = {}
             let obj6 = {}
     
-            obj1[point_1] = result_1
+            obj1[`${point_1}`] = result_1
             obj2[point_2] = result_2
             obj3[point_3] = result_3
             obj4[point_4] = result_4
             obj5[point_5] = result_5
             obj6[point_6] = result_6
+
+            console.log(obj1, obj2);
 
             let image_name = "";
             let image_url = "";
