@@ -79,7 +79,13 @@ module.exports = {
                 result_3,
                 result_4,
                 result_5,
-                result_6
+                result_6,
+                point_1,
+                point_2,
+                point_3,
+                point_4,
+                point_5,
+                point_6,
             } = req.body
             const uploadPhoto = req.file;
 
@@ -93,7 +99,7 @@ module.exports = {
                 image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
             }
 
-            const addTest = await model.addTest(title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name)
+            const addTest = await model.addTest(title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name , point_1)
 
             if (addTest) {
                 return res.json({

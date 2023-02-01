@@ -110,7 +110,7 @@ INSERT INTO
             $1,
             $2,
             $3,
-            $4,
+            {$4: $12},
             $5,
             $6,
             $7,
@@ -157,7 +157,7 @@ const testLimitNextByTitle = (id, title) => fetchALL(TEST_LIMIT_NEXT_BY_TITLE, i
 const testLimitPrevByTitle = (id, title) => fetchALL(TEST_LIMIT_PREV_BY_TITLE, id, title)
 const testLimitNext = (id) => fetchALL(TEST_LIMIT_NEXT, id)
 const testLimitPrev = (id) => fetchALL(TEST_LIMIT_PREV, id)
-const addTest = (title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name) => fetch(ADD_TEST, title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name)
+const addTest = (title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name, point_1) => fetch(ADD_TEST, title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name, point_1)
 const updateTest = (id, title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name) => fetch(UPDATE_TEST, id, title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name)
 const deleteTest = (id) => fetch(DELETE_TEST, id)
 
