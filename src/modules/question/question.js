@@ -87,8 +87,6 @@ module.exports = {
                 point_6,
             } = req.body
 
-            console.log(req.body);
-
             let obj1 = {}
             let obj2 = {}
             let obj3 = {}
@@ -111,25 +109,19 @@ module.exports = {
             //     image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
             // }
 
-            // const addQuestion = await model.addQuestion(title, testId, obj1, obj2, obj3, obj4, obj5, obj6)
+            const addQuestion = await model.addQuestion(title, testId, obj1, obj2, obj3, obj4, obj5, obj6)
 
-            console.log(title, testId);
-            return res.json({
-                status: 200,
-                message: "Success"
-            })
-
-            // if (addQuestion) {
-            //     return res.json({
-            //         status: 200,
-            //         message: "Success"
-            //     })
-            // } else {
-            //     return res.json({
-            //         status: 400,
-            //         message: "Bad request"
-            //     })
-            // }
+            if (addQuestion) {
+                return res.json({
+                    status: 200,
+                    message: "Success"
+                })
+            } else {
+                return res.json({
+                    status: 400,
+                    message: "Bad request"
+                })
+            }
 
         } catch (error) {
             console.log(error)
