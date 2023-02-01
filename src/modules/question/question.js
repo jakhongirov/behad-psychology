@@ -87,6 +87,8 @@ module.exports = {
                 point_6,
             } = req.body
 
+            console.log(req.body);
+
             let obj1 = {}
             let obj2 = {}
             let obj3 = {}
