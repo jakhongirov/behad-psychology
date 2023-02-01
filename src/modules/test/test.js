@@ -93,24 +93,19 @@ module.exports = {
                 image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
             }
 
-            return res.json({
-                status: 200,
-                message: "Success"
-            })
+            const addTest = await model.addTest(title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name)
 
-            // const addTest = await model.addTest(title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name)
-
-            // if (addTest) {
-            //     return res.json({
-            //         status: 200,
-            //         message: "Success"
-            //     })
-            // } else {
-            //     return res.json({
-            //         status: 400,
-            //         message: "Bad request"
-            //     })
-            // }
+            if (addTest) {
+                return res.json({
+                    status: 200,
+                    message: "Success"
+                })
+            } else {
+                return res.json({
+                    status: 400,
+                    message: "Bad request"
+                })
+            }
 
         } catch (error) {
             console.log(error)
