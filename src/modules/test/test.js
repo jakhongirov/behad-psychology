@@ -113,8 +113,6 @@ module.exports = {
             obj5[point_5] = result_5
             obj6[point_6] = result_6
 
-            console.log(obj1);
-
             const addTest = await model.addTest(title, description, category_id, obj1, obj2, obj3, obj4, obj5, obj6, image_url, image_name)
 
             if (addTest) {
@@ -150,13 +148,33 @@ module.exports = {
                 result_3,
                 result_4,
                 result_5,
-                result_6
+                result_6,
+                point_1,
+                point_2,
+                point_3,
+                point_4,
+                point_5,
+                point_6,
             } = req.body
             const uploadPhoto = req.file;
             const testByid = await model.testByid(id)
 
             let image_name = "";
             let image_url = "";
+
+            let obj1 = {}
+            let obj2 = {}
+            let obj3 = {}
+            let obj4 = {}
+            let obj5 = {}
+            let obj6 = {}
+    
+            obj1[point_1] = result_1
+            obj2[point_2] = result_2
+            obj3[point_3] = result_3
+            obj4[point_4] = result_4
+            obj5[point_5] = result_5
+            obj6[point_6] = result_6
 
             if (testByid) {
                 const deleteOldLogo = await new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images', `${testByid?.test_img_name}`))
@@ -175,12 +193,12 @@ module.exports = {
                     title,
                     description,
                     category_id,
-                    result_1,
-                    result_2,
-                    result_3,
-                    result_4,
-                    result_5,
-                    result_6,
+                    obj1,
+                    obj2,
+                    obj3,
+                    obj4,
+                    obj5,
+                    obj6,
                     image_url,
                     image_name
                 )

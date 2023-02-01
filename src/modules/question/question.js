@@ -70,7 +70,36 @@ module.exports = {
 
     POST: async (req, res) => {
         try {
-            const { text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6 } = req.body
+            const {
+                text,
+                testId,
+                answer_1,
+                answer_2,
+                answer_3,
+                answer_4,
+                answer_5,
+                answer_6,
+                point_1,
+                point_2,
+                point_3,
+                point_4,
+                point_5,
+                point_6,
+            } = req.body
+
+            let obj1 = {}
+            let obj2 = {}
+            let obj3 = {}
+            let obj4 = {}
+            let obj5 = {}
+            let obj6 = {}
+
+            obj1[point_1] = answer_1
+            obj2[point_2] = answer_2
+            obj3[point_3] = answer_3
+            obj4[point_4] = answer_4
+            obj5[point_5] = answer_5
+            obj6[point_6] = answer_6
 
             // const uploadPhoto = req.file;
             // let image_name = "";
@@ -80,7 +109,7 @@ module.exports = {
             //     image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
             // }
 
-            const addQuestion = await model.addQuestion(text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
+            const addQuestion = await model.addQuestion(text, testId, obj1, obj2, obj3, obj4, obj5, obj6)
 
             if (addQuestion) {
                 return res.json({
@@ -105,9 +134,39 @@ module.exports = {
 
     PUT: async (req, res) => {
         try {
-            const { id, text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6 } = req.body
+            const {
+                id,
+                text,
+                testId,
+                answer_1,
+                answer_2,
+                answer_3,
+                answer_4,
+                answer_5,
+                answer_6,
+                point_1,
+                point_2,
+                point_3,
+                point_4,
+                point_5,
+                point_6,
+            } = req.body
 
-            const updateQuestion = await model.updateQuestion(id, text, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
+            let obj1 = {}
+            let obj2 = {}
+            let obj3 = {}
+            let obj4 = {}
+            let obj5 = {}
+            let obj6 = {}
+
+            obj1[point_1] = answer_1
+            obj2[point_2] = answer_2
+            obj3[point_3] = answer_3
+            obj4[point_4] = answer_4
+            obj5[point_5] = answer_5
+            obj6[point_6] = answer_6
+
+            const updateQuestion = await model.updateQuestion(id, text, testId, obj1, obj2, obj3, obj4, obj5, obj6)
 
             if (updateQuestion) {
                 return res.json({
