@@ -92,7 +92,7 @@ const TEST_LIMIT_PREV = `
 
 const ADD_TEST = `
 INSERT INTO
-    test_categories (
+    tests (
         test_title,
         test_description,
         test_category_id,
