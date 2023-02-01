@@ -71,7 +71,7 @@ module.exports = {
     POST: async (req, res) => {
         try {
             const {
-                text,
+                title,
                 testId,
                 answer_1,
                 answer_2,
@@ -109,7 +109,7 @@ module.exports = {
             //     image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
             // }
 
-            const addQuestion = await model.addQuestion(text, testId, obj1, obj2, obj3, obj4, obj5, obj6)
+            const addQuestion = await model.addQuestion(title, testId, obj1, obj2, obj3, obj4, obj5, obj6)
 
             if (addQuestion) {
                 return res.json({
@@ -136,7 +136,7 @@ module.exports = {
         try {
             const {
                 id,
-                text,
+                title,
                 testId,
                 answer_1,
                 answer_2,
@@ -166,7 +166,7 @@ module.exports = {
             obj5[point_5] = answer_5
             obj6[point_6] = answer_6
 
-            const updateQuestion = await model.updateQuestion(id, text, testId, obj1, obj2, obj3, obj4, obj5, obj6)
+            const updateQuestion = await model.updateQuestion(id, title, testId, obj1, obj2, obj3, obj4, obj5, obj6)
 
             if (updateQuestion) {
                 return res.json({
