@@ -10,6 +10,15 @@ const CATEGORIES = `
     LIMIT 50;   
 `;
 
+const ALL_CATEGORIES = `
+    SELECT
+        *, to_char(test_category_create_date at time zone 'Asia/Tashkent', 'HH24:MM/MM.DD.YYYY')
+    FROM
+        test_categories
+    ORDER BY    
+        test_category_id DESC;   
+`;
+
 const CATEGORIES_LIMIT_NEXT = `
     SELECT
         *, to_char(test_category_create_date at time zone 'Asia/Tashkent', 'HH24:MM/MM.DD.YYYY')
@@ -79,6 +88,7 @@ const DELETE_CATEGORY = `
     RETURNING *;
 `
 
+const categoriesAll = () => fetchALL(ALL_CATEGORIES)
 const categories = () => fetchALL(CATEGORIES)
 const categoriesLimitNext = (id) => fetchALL(CATEGORIES_LIMIT_NEXT, id)
 const categoriesLimitPrev = (id) => fetchALL(CATEGORIES_LIMIT_PREV, id)
@@ -88,6 +98,7 @@ const updateCategory = (id, title, image_url, image_name) => fetch(UPDATE_CATEGO
 const deleteCategory = (id) => fetch(DELETE_CATEGORY, id)
 
 module.exports = {
+    categoriesAll,
     categories,
     categoriesLimitNext,
     categoriesLimitPrev,

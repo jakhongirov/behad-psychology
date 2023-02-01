@@ -1,6 +1,6 @@
 const { fetch, fetchALL } = require("../../lib/postgres");
 
-const ALL_TEST = `
+const TEST = `
     SELECT
         *, to_char(test_create_date at time zone 'Asia/Tashkent', 'HH24:MM/MM.DD.YYYY')
     FROM
@@ -8,6 +8,15 @@ const ALL_TEST = `
     ORDER BY    
         test_id DESC
     LIMIT 50;  
+`;
+
+const ALL_TEST = `
+    SELECT
+        *, to_char(test_create_date at time zone 'Asia/Tashkent', 'HH24:MM/MM.DD.YYYY')
+    FROM
+        tests
+    ORDER BY    
+        test_id DESC;  
 `;
 
 const TEST_BY_ID = `
@@ -141,6 +150,7 @@ const DELETE_TEST = `
 `
 
 const testAll = () => fetchALL(ALL_TEST)
+const tests = () => fetchALL(TEST)
 const testByid = (id) => fetch(TEST_BY_ID, id)
 const testByCategoryId = (categoryId) => fetchALL(TEST_BY_CATEGORY_ID, categoryId)
 const testLimitNextByTitle = (id, title) => fetchALL(TEST_LIMIT_NEXT_BY_TITLE, id, title)
@@ -153,6 +163,7 @@ const deleteTest = (id) => fetch(DELETE_TEST, id)
 
 module.exports = {
     testAll,
+    tests,
     testByid,
     testByCategoryId,
     testLimitNextByTitle,

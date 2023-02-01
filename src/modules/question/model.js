@@ -1,6 +1,6 @@
 const { fetch, fetchALL } = require("../../lib/postgres");
 
-const ALL_QUESTION = `
+const QUESTIONS = `
     SELECT
         *, to_char(test_question_create_date at time zone 'Asia/Tashkent', 'HH24:MM/MM.DD.YYYY')
     FROM
@@ -8,6 +8,15 @@ const ALL_QUESTION = `
     ORDER BY    
         test_question_id DESC
     LIMIT 50;  
+`;
+
+const ALL_QUESTIONS = `
+    SELECT
+        *, to_char(test_question_create_date at time zone 'Asia/Tashkent', 'HH24:MM/MM.DD.YYYY')
+    FROM
+        test_questions
+    ORDER BY    
+        test_question_id DESC;  
 `;
 
 const QUESTION_BY_ID = `
@@ -129,7 +138,8 @@ const DELETE_QUESTION = `
     RETURNING *;
 `;
 
-const questionAll = () => fetchALL(ALL_QUESTION)
+const questionAll = () => fetch(ALL_QUESTIONS)
+const question = () => fetchALL(QUESTIONS)
 const questionById = (id) => fetch(QUESTION_BY_ID, id)
 const questionLimitNextByTitle = (id, title) => fetchALL(QUESTION_LIMIT_NEXT_BY_TITLE, id, title)
 const questionLimitPrevByTitle = (id, title) => fetchALL(QUESTION_LIMIT_PREV_BY_TITLE, id, title)
@@ -142,6 +152,7 @@ const deleteQuestion= (id) => fetch(DELETE_QUESTION, id)
 
 module.exports = {
     questionAll,
+    question,
     questionById,
     questionLimitNextByTitle,
     questionLimitPrevByTitle,

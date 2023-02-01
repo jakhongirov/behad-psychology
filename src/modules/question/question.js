@@ -7,7 +7,15 @@ module.exports = {
         try {
             const { id, testId, position, title } = req.query
 
-            if (position == "next" && id && title) {
+            if (position == 'all') {
+                const questionAll = await model.questionAll()
+                return res.json({
+                    status: 200,
+                    message: "Success",
+                    data: questionAll
+                })
+
+            } else if (position == "next" && id && title) {
                 const questionLimitNextByTitle = await model.questionLimitNextByTitle(id, title)
                 return res.json({
                     status: 200,
@@ -43,11 +51,11 @@ module.exports = {
                     data: questionByTestId
                 })
             } else {
-                const questionAll = await model.questionAll()
+                const question = await model.question()
                 return res.json({
                     status: 200,
                     message: "Success",
-                    data: questionAll
+                    data: question
                 })
             }
 

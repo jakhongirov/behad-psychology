@@ -7,7 +7,14 @@ module.exports = {
         try {
             const { title, id, position, categoryId } = req.query
 
-            if (categoryId) {
+            if (position == 'all') {
+                const testAll = await model.testAll()
+                return res.json({
+                    status: 200,
+                    message: "Succcess",
+                    data: testAll
+                })
+            } else if (categoryId) {
                 const testByCategoryId = await model.testByCategoryId(categoryId)
                 return res.json({
                     status: 200,
@@ -44,11 +51,11 @@ module.exports = {
                     data: testLimitPrev
                 })
             } else {
-                const testAll = await model.testAll()
+                const tests = await model.tests()
                 return res.json({
                     status: 200,
                     message: "Succcess",
-                    data: testAll
+                    data: tests
                 })
             }
 

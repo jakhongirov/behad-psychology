@@ -7,7 +7,16 @@ module.exports = {
         try {
             const { position, id } = req.query;
 
-            if (position === 'next' && id) {
+            if (position == 'all') {
+                const categoriesAll = await model.categoriesAll()
+
+                return res.json({
+                    status: 200,
+                    message: "Succcess",
+                    data: categoriesAll
+                })
+
+            } else if (position === 'next' && id) {
                 const categoriesLimitNext = await model.categoriesLimitNext(id)
 
                 return res.json({
