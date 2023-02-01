@@ -79,11 +79,30 @@ module.exports = {
                 result_3,
                 result_4,
                 result_5,
-                result_6
+                result_6,
+                point_1,
+                point_2,
+                point_3,
+                point_4,
+                point_5,
+                point_6,
+                
             } = req.body
             const uploadPhoto = req.file;
 
-            console.log(result_1[0]);
+            let obj1 = {}
+            let obj2 = {}
+            let obj3 = {}
+            let obj4 = {}
+            let obj5 = {}
+            let obj6 = {}
+    
+            obj1[point_1] = result_1
+            obj2[point_2] = result_2
+            obj3[point_3] = result_3
+            obj4[point_4] = result_4
+            obj5[point_5] = result_5
+            obj6[point_6] = result_6
 
             let image_name = "";
             let image_url = "";
@@ -93,24 +112,20 @@ module.exports = {
                 image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
             }
 
-            return res.json({
-                status: 200,
-                message: "Success"
-            })
 
-            // const addTest = await model.addTest(title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name)
+            const addTest = await model.addTest(title, description, category_id, obj1, obj2, obj3, obj4, obj5, obj6, image_url, image_name)
 
-            // if (addTest) {
-            //     return res.json({
-            //         status: 200,
-            //         message: "Success"
-            //     })
-            // } else {
-            //     return res.json({
-            //         status: 400,
-            //         message: "Bad request"
-            //     })
-            // }
+            if (addTest) {
+                return res.json({
+                    status: 200,
+                    message: "Success"
+                })
+            } else {
+                return res.json({
+                    status: 400,
+                    message: "Bad request"
+                })
+            }
 
         } catch (error) {
             console.log(error)
