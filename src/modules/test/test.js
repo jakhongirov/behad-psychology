@@ -115,7 +115,7 @@ module.exports = {
 
             console.log(obj1);
 
-            const addTest = await model.addTest(title, description, category_id, result_1, result_2, result_3, result_4, result_5, result_6, image_url, image_name)
+            const addTest = await model.addTest(title, description, category_id, obj1, obj2, obj3, obj4, obj5, obj6, image_url, image_name)
 
             if (addTest) {
                 return res.json({
