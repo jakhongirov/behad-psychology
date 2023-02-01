@@ -83,6 +83,8 @@ module.exports = {
             } = req.body
             const uploadPhoto = req.file;
 
+            console.log(result_1);
+
             let image_name = "";
             let image_url = "";
 
