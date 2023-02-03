@@ -125,7 +125,7 @@ const UPDATE_QUESTION =`
         test_answer_3 = $6,
         test_answer_4 = $7,
         test_answer_5 = $8,
-        test_answer_6 = $9,
+        test_answer_6 = $9
     WHERE
         test_question_id = $1 RETURNING * ;
 `;
