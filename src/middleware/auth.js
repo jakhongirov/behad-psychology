@@ -5,7 +5,10 @@ module.exports = {
     AUTH: async (req, res, next) => {
         try {
             const { token } = req.headers;
+            console.log(token);
             const app = await model.getAppbyKeyAppAuth(token)
+
+            console.log(app);
 
             if (app) {
                 next()
