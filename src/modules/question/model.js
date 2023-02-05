@@ -99,7 +99,9 @@ const ADD_QUESTION = `
             test_answer_3,
             test_answer_4,
             test_answer_5,
-            test_answer_6
+            test_answer_6,
+            question_img_url,
+            question_img_name
             )
         VALUES  
             (
@@ -110,11 +112,13 @@ const ADD_QUESTION = `
                 $5,
                 $6,
                 $7,
-                $8
+                $8,
+                $9
+                $10
             ) RETURNING *;
 `;
 
-const UPDATE_QUESTION =`
+const UPDATE_QUESTION = `
     UPDATE
         test_questions
     SET
@@ -125,7 +129,9 @@ const UPDATE_QUESTION =`
         test_answer_3 = $6,
         test_answer_4 = $7,
         test_answer_5 = $8,
-        test_answer_6 = $9
+        test_answer_6 = $9,
+        question_img_url = $10,
+        question_img_name = $11
     WHERE
         test_question_id = $1 RETURNING * ;
 `;
@@ -146,9 +152,9 @@ const questionLimitPrevByTitle = (id, title) => fetchALL(QUESTION_LIMIT_PREV_BY_
 const questionLimitNext = (id) => fetchALL(QUESTION_LIMIT_NEXT, id)
 const questionLimitPrev = (id) => fetchALL(QUESTION_LIMIT_PREV, id)
 const questionByTestId = (testId) => fetchALL(QUESTION_BY_TEST_ID, testId)
-const addQuestion = (title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6) => fetch(ADD_QUESTION, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
-const updateQuestion = (id, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6) => fetch(UPDATE_QUESTION, id, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6)
-const deleteQuestion= (id) => fetch(DELETE_QUESTION, id)
+const addQuestion = (title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, image_url, image_name) => fetch(ADD_QUESTION, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, image_url, image_name)
+const updateQuestion = (id, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, image_url, image_name) => fetch(UPDATE_QUESTION, id, title, testId, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, image_url, image_name)
+const deleteQuestion = (id) => fetch(DELETE_QUESTION, id)
 
 module.exports = {
     questionAll,

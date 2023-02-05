@@ -32,5 +32,7 @@ CREATE TABLE test_questions (
     test_answer_4 json,
     test_answer_5 json,
     test_answer_6 json,
+    question_img_url text DEFAULT '',
+    question_img_name text DEFAULT '',
     test_question_create_date timestamptz DEFAULT CURRENT_TIMESTAMP
 );

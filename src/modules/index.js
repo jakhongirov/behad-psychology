@@ -19,8 +19,8 @@ router
     .delete('/deleteTest', AUTH, Test.DELETE)
 
     .get('/questions', AUTH, Questions.GET)
-    .post('/addQuestion', AUTH, Questions.POST)
-    .put('/updateQuestion', AUTH, Questions.PUT)
+    .post('/addQuestion', FileUpload.single('photo'), AUTH, Questions.POST)
+    .put('/updateQuestion', FileUpload.single('photo'), AUTH, Questions.PUT)
     .delete('/deleteQuestion', AUTH, Questions.DELETE);
 
 module.exports = router

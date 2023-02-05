@@ -101,15 +101,16 @@ module.exports = {
             obj5[point_5] = answer_5
             obj6[point_6] = answer_6
 
-            // const uploadPhoto = req.file;
-            // let image_name = "";
-            // let image_url = "";
-            // if (uploadPhoto) {
-            //     image_name = uploadPhoto.filename;
-            //     image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
-            // }
+            const uploadPhoto = req.file;
+            let image_name = "";
+            let image_url = "";
 
-            const addQuestion = await model.addQuestion(title, testId, obj1, obj2, obj3, obj4, obj5, obj6)
+            if (uploadPhoto) {
+                image_name = uploadPhoto.filename;
+                image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`;
+            }
+
+            const addQuestion = await model.addQuestion(title, testId, obj1, obj2, obj3, obj4, obj5, obj6, image_url, image_name)
 
             if (addQuestion) {
                 return res.json({
@@ -166,19 +167,44 @@ module.exports = {
             obj5[point_5] = answer_5
             obj6[point_6] = answer_6
 
-            const updateQuestion = await model.updateQuestion(id, title, testId, obj1, obj2, obj3, obj4, obj5, obj6)
+            let image_name = "";
+            let image_url = "";
 
-            if (updateQuestion) {
-                return res.json({
-                    status: 200,
-                    message: "Success"
-                })
+            const uploadPhoto = req.file;
+            const questionById = await model.questionById(id)
+
+            if (questionById) {
+                const deleteOldLogo = await new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images', `${questionById?.question_img_name}`))
+
+                if (uploadPhoto) {
+                    deleteOldLogo.delete()
+                    image_name = uploadPhoto.filename
+                    image_url = `https://psychology.behad.uz/public/images/${uploadPhoto.filename}`
+                } else {
+                    image_url = questionById?.question_img_url
+                    image_name = questionById?.question_img_name
+                }
+
+                const updateQuestion = await model.updateQuestion(id, title, testId, obj1, obj2, obj3, obj4, obj5, obj6, image_url, image_name)
+
+                if (updateQuestion) {
+                    return res.json({
+                        status: 200,
+                        message: "Success"
+                    })
+                } else {
+                    return res.json({
+                        status: 400,
+                        message: "Bad request"
+                    })
+                }
             } else {
                 return res.json({
                     status: 400,
                     message: "Bad request"
                 })
             }
+
         } catch (error) {
             console.log(error)
             res.json({
@@ -191,9 +217,12 @@ module.exports = {
     DELETE: async (req, res) => {
         try {
             const { id } = req.body
+            const questionById = await model.questionById(id)
+            const deleteOldLogo = await new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images', `${questionById?.question_img_name}`))
             const deleteQuestion = await model.deleteQuestion(id)
 
             if (deleteQuestion) {
+                deleteOldLogo.delete()
                 return res.json({
                     status: 200,
                     message: "Success"
