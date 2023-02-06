@@ -113,7 +113,7 @@ const ADD_QUESTION = `
                 $6,
                 $7,
                 $8,
-                $9
+                $9,
                 $10
             ) RETURNING *;
 `;
