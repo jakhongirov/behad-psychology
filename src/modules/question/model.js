@@ -144,7 +144,7 @@ const DELETE_QUESTION = `
     RETURNING *;
 `;
 
-const questionAll = () => fetch(ALL_QUESTIONS)
+const questionAll = () => fetchALL(ALL_QUESTIONS)
 const question = () => fetchALL(QUESTIONS)
 const questionById = (id) => fetch(QUESTION_BY_ID, id)
 const questionLimitNextByTitle = (id, title) => fetchALL(QUESTION_LIMIT_NEXT_BY_TITLE, id, title)
